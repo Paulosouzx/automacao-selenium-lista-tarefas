@@ -2,11 +2,11 @@ const {Builder, By, Key} = require ("selenium-webdriver")
 const assert = require ("assert")
 const should = require ("chai").should()
 
-
-//Bloco Describe - Agrupamento de casos de teste. Funcionalidade a ser testada.
-describe("Segundo teste", function(){
+//Bloco Describe - Agrupamento de casos de teste. Funcionalidade a ser testada
+describe("Segundo teste", async function(){
     //Bloco IT - Teste Individual
-    it("Primeiro caso de teste", async function(){
+    it("Primeiro caso de teste", async function()
+    {
 
         //Abrir o navegador
         let driver = await new Builder().forBrowser("firefox").build()
@@ -22,12 +22,12 @@ describe("Segundo teste", function(){
         let itens = ("Aprender automacao com selenium")
         
         //Item 1
-        await driver.findElement(By.id("inputTask")).sendKeys("Aprender automacao com selenium", Key.RETURN)
+        await driver.findElement(By.id("inputTask")).sendKeys(itens, Key.RETURN)
         
         //Assertion
         let seleniumText = await driver.findElement(By.xpath("/html/body/div/section/ul/li/label")).getText().then(function(value){
-            return value
-        })  
+            return value})  
+            
         
         //Assertion usando o node puro
         assert.strictEqual(seleniumText, ("Aprender automacao com selenium"))
@@ -66,7 +66,7 @@ describe("Segundo teste", function(){
         assert.strictEqual(seleniumText, ("Aprender automacao com selenium"))
         
         //Assertion usando Chai
-        seleniumText.should.equal("Aprender automacao no JS")
+        seleniumText.should.equal("Aprender automacao com selenium")
         
         //Fechar o navegador
          await driver.quit()
